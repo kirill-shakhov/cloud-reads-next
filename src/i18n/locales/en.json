@@ -1,0 +1,96 @@
+{
+  "pages": {
+    "login": {
+      "title": "Login",
+      "button": "login",
+      "googleAuthInProgress": "Signing you in with Google...",
+      "donTHaveAnAccount": "Don't have an account?",
+      "signUp": "Sign up!",
+      "twoFactorTitle": "Two-Factor Authentication",
+      "twoFactorDesc": "Enter the 6-digit code from your authenticator app.",
+      "twoFactorCodeLabel": "Verification code",
+      "twoFactorConfirm": "Verify"
+    },
+    "register": {
+      "title": "Register your account",
+      "stepLabel": "Step {currentStep}/{totalSteps}",
+      "alreadyHaveAnAccount": "Already have an account?",
+      "previousStep": "Previous",
+      "nextStep": "Continue",
+      "button": "Complete registration",
+      "haveAnAccount": "Already have an account?",
+      "login": "Login!",
+      "registrationFailed": "Registration failed. Please try again.",
+      "emailActivated": "Email activated successfully!"
+    },
+    "registerEmailSent": {
+      "stepLabel": "Step 3/3",
+      "title": "Check your email",
+      "description": "We have sent an activation link to your email address. Open the message and follow the link to finish account activation.",
+      "goToLogin": "Go to login",
+      "sendAgain": "Send again",
+      "openMailbox": "Open mailbox"
+    },
+    "emailConfirmation": {
+      "title": "Confirm your email",
+      "activating": "Activating your account...",
+      "noToken": "Activation link is invalid or missing.",
+      "success": "Email confirmed successfully!",
+      "successMessage": "Your account has been activated. You can now log in.",
+      "backToHome": "Go to Dashboard",
+      "activationFailed": "Email activation failed. The link may have expired.",
+      "errorMessage": "Please try registering again or contact support.",
+      "backToLogin": "Back to Login"
+    }
+  },
+  "errors": {
+    "common": {
+      "unknown": "An unknown error occurred"
+    },
+    "auth": {
+      "google": {
+        "missingClientId": "Google OAuth initialization skipped: GOOGLE_CONFIG.CLIENT_ID is missing or empty. Check NEXT_PUBLIC_GOOGLE_CLIENT_ID."
+      }
+    }
+  },
+  "fields": {
+    "username": "Username",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "bio": "Bio",
+    "twoFactorCode": "Two-Factor Authentication Code"
+  },
+  "validation": {
+    "usernameRequired": "Username is required",
+    "usernameMinLength": "Username must be at least 3 characters",
+    "passwordRequired": "Password is required",
+    "confirmPasswordRequired": "Confirm password is required",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "bioRequired": "Bio is required",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Email is invalid",
+    "countryRequired": "Country is required",
+    "userAlreadyExists": "A user with this username already exists",
+    "twoFactorCodeRequired": "Verification code is required",
+    "twoFactorCodeLength": "Code must be 6 digits"
+  },
+  "uiInput": {
+    "togglePasswordVisibility": "Toggle password visibility"
+  },
+  "uiUploadFile": {
+    "preview": "Preview",
+    "upload": "Upload",
+    "selectFileToUpload": "Select file to upload",
+    "unsupportedFileType": "Unsupported file type"
+  },
+  "uiCountrySelector": {
+    "label": "Country",
+    "noResults": "No results found"
+  }
+}

@@ -1,6 +1,6 @@
 import type { IUser } from '@/modules/auth/types';
 
-import type { UserFullDTO } from '@/shared/types/user';
+import type { UserFullDTO } from '@/core/types/user';
 
 export interface CheckUserRequest {
   username: string;

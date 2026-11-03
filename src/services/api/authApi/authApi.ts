@@ -1,6 +1,6 @@
 import $api from '@/services/api/createAxiosInstance';
 
-import type { UserFullDTO } from '@/shared/types/user';
+import type { UserFullDTO } from '@/core/types/user';
 
 import type {
   AuthResponse,

@@ -2,11 +2,10 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
-import { Toast } from '@heroui/react';
 
 import { PageLoader } from '@/shared/components/PageLoader/PageLoader';
 
-import { I18nProvider } from '@/i18n/I18nProvider';
+import { Providers } from '@/providers/Providers';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -32,11 +31,8 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       className={`h-full antialiased ${geistSans.variable} ${geistMono.variable} ${inter.variable} font-sans`}
     >
       <body className="min-h-full flex flex-col">
-        <I18nProvider>
-          {children}
-          <PageLoader />
-          <Toast.Provider />
-        </I18nProvider>
+        <Providers>{children}</Providers>
+        <PageLoader />
       </body>
     </html>
   );

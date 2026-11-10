@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
 
 import { GOOGLE_CONFIG } from '@/modules/auth/constants';
-import type { GoogleCredentialResponse } from '@/modules/auth/types';
+import type { GoogleCredentialResponse } from '@/modules/auth/types/google';
 
 import i18n from '@/i18n';
 
@@ -39,6 +39,7 @@ export function GoogleSignInButton({ onLogin }: GoogleSignInButtonProps) {
       callback: (response: GoogleCredentialResponse) =>
         onLoginRef.current(response.credential),
     });
+
     window.google.accounts.id.renderButton(
       buttonRef.current,
       GOOGLE_CONFIG.BUTTON_CONFIG

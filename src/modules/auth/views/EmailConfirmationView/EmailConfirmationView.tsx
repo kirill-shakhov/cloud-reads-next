@@ -12,6 +12,8 @@ import { useTranslations } from '@/shared/hooks/useTranslations';
 import { AuthPageLayout } from '@/modules/auth/components/AuthPageLayout/AuthPageLayout';
 import { useRegistrationStore } from '@/modules/auth/stores/registration';
 
+import { APP_ROUTES } from '@/shared/constants/routes';
+
 export function EmailConfirmationView() {
   return (
     <Suspense>
@@ -77,7 +79,10 @@ function EmailConfirmationContent() {
             {t('successMessage')}
           </p>
 
-          <Link href="/" className={buttonVariants({ fullWidth: true })}>
+          <Link
+            href={APP_ROUTES.HOME}
+            className={buttonVariants({ fullWidth: true })}
+          >
             {t('backToHome')}
           </Link>
         </div>
@@ -96,7 +101,7 @@ function EmailConfirmationContent() {
           </p>
 
           <Link
-            href="/auth/login"
+            href={APP_ROUTES.AUTH_LOGIN}
             className={buttonVariants({ fullWidth: true })}
           >
             {t('backToLogin')}

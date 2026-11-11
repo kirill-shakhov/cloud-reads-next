@@ -4,6 +4,11 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import {
+  Bars3Icon,
+  ChevronDownIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import { Dropdown } from '@heroui/react';
 
 import { Logo } from '@/shared/components/Logo/Logo';
@@ -34,6 +39,14 @@ export function AppHeader({ user }: AppHeaderProps) {
     setIsMobileMenuOpen(true);
   };
 
+  const closeMobileMenu = (): void => {
+    setIsMobileMenuOpen(false);
+  };
+
+  const toggleProfileMenu = (): void => {
+    setIsProfileMenuOpen((isOpen) => !isOpen);
+  };
+
   const handleLogout = async (): Promise<void> => {
     setIsProfileMenuOpen(false);
     await logout();
@@ -59,7 +72,7 @@ export function AppHeader({ user }: AppHeaderProps) {
               aria-expanded={isMobileMenuOpen}
               onClick={openMobileMenu}
             >
-              <MenuIcon />
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
 
             <Link
@@ -74,7 +87,7 @@ export function AppHeader({ user }: AppHeaderProps) {
               href={APP_ROUTES.HOME}
               className="flex items-center lg:hidden"
               aria-label={t('yourCompany')}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
             >
               <Logo className="h-auto w-12" />
             </Link>
@@ -91,7 +104,11 @@ export function AppHeader({ user }: AppHeaderProps) {
             <Dropdown>
               <Dropdown.Trigger className="flex items-center gap-1 text-sm font-semibold leading-6 text-gray-900 dark:text-white">
                 {t('books')}
-                <ChevronIcon />
+
+                <ChevronDownIcon
+                  className="h-5 w-5 shrink-0 text-gray-400"
+                  aria-hidden="true"
+                />
               </Dropdown.Trigger>
 
               <Dropdown.Popover
@@ -129,7 +146,7 @@ export function AppHeader({ user }: AppHeaderProps) {
                   className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-indigo-100 font-semibold text-indigo-700 ring-1 ring-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-950 dark:text-indigo-200 dark:ring-neutral-700"
                   aria-label={t('profileMenu')}
                   aria-expanded={isProfileMenuOpen}
-                  onClick={() => setIsProfileMenuOpen((isOpen) => !isOpen)}
+                  onClick={toggleProfileMenu}
                 >
                   {user.image ? (
                     <Image
@@ -144,16 +161,19 @@ export function AppHeader({ user }: AppHeaderProps) {
                     userInitials
                   )}
                 </button>
+
                 {isProfileMenuOpen && (
                   <div className="absolute right-0 top-full z-20 mt-3 w-64 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg dark:border-neutral-700 dark:bg-neutral-900">
                     <div className="border-b border-gray-100 px-4 py-3 dark:border-neutral-800">
                       <p className="text-sm font-medium text-gray-900 dark:text-white">
                         {userName}
                       </p>
+
                       <p className="truncate text-sm text-gray-500 dark:text-neutral-400">
                         {user.email}
                       </p>
                     </div>
+
                     <button
                       type="button"
                       className="w-full px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-50 dark:text-neutral-300 dark:hover:bg-neutral-800"
@@ -181,9 +201,10 @@ export function AppHeader({ user }: AppHeaderProps) {
         <div
           className="fixed inset-0 z-50 lg:hidden"
           role="presentation"
-          onClick={() => setIsMobileMenuOpen(false)}
+          onClick={closeMobileMenu}
         >
           <div className="absolute inset-0 bg-black/20" />
+
           <section
             aria-label={t('ariaLabelGlobal')}
             className="absolute inset-y-0 left-0 w-[88%] max-w-sm overflow-y-auto bg-white px-6 py-6 shadow-xl dark:bg-neutral-900"
@@ -195,55 +216,67 @@ export function AppHeader({ user }: AppHeaderProps) {
               <Link
                 href={APP_ROUTES.HOME}
                 aria-label={t('yourCompany')}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMobileMenu}
               >
                 <Logo className="h-auto w-[60px]" />
               </Link>
+
               <button
                 type="button"
                 className="rounded-md p-2 text-gray-700 hover:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-800"
                 aria-label={t('closeMenu')}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMobileMenu}
               >
-                <CloseIcon />
+                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
+
             <div className="mt-8 flex flex-col gap-1">
               <Link
                 href={APP_ROUTES.HOME}
                 className="rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-neutral-800"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMobileMenu}
               >
                 {t('main')}
               </Link>
+
               <details className="group">
                 <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-neutral-800">
                   {t('books')}
-                  <ChevronIcon />
+
+                  <ChevronDownIcon
+                    className="h-5 w-5 shrink-0 text-gray-400 transition-transform group-open:rotate-180"
+                    aria-hidden="true"
+                  />
                 </summary>
+
                 <div className="ml-3 flex flex-col">
                   <Link
                     href={APP_ROUTES.BOOKS_LIBRARY}
                     className="rounded-lg px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 dark:text-neutral-300 dark:hover:bg-neutral-800"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={closeMobileMenu}
                   >
                     {t('myBooks')}
                   </Link>
+
                   <Link
                     href={APP_ROUTES.BOOK_UPLOAD}
                     className="rounded-lg px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 dark:text-neutral-300 dark:hover:bg-neutral-800"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={closeMobileMenu}
                   >
                     {t('upload')}
                   </Link>
                 </div>
               </details>
+
               {user && (
                 <>
                   <div className="my-3 border-t border-gray-200 dark:border-neutral-700" />
+
                   <p className="px-3 text-sm text-gray-500 dark:text-neutral-400">
                     {userName}
                   </p>
+
                   <button
                     type="button"
                     className="rounded-lg px-3 py-2 text-left text-base font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-neutral-800"
@@ -258,62 +291,5 @@ export function AppHeader({ user }: AppHeaderProps) {
         </div>
       )}
     </>
-  );
-}
-
-function ChevronIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="h-5 w-5 shrink-0 text-gray-400"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="m19.5 8.25-7.5 7.5-7.5-7.5"
-      />
-    </svg>
-  );
-}
-
-function MenuIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="h-6 w-6"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-      />
-    </svg>
-  );
-}
-
-function CloseIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="h-6 w-6"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="m6 6 12 12M18 6 6 18"
-      />
-    </svg>
   );
 }

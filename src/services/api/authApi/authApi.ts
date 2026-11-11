@@ -1,7 +1,5 @@
 import $api from '@/services/api/createAxiosInstance';
 
-import type { UserFullDTO } from '@/core/types/user';
-
 import type {
   AuthResponse,
   AuthResult,
@@ -62,12 +60,6 @@ class AuthApi {
       'auth/check-user',
       request
     );
-
-    return data;
-  }
-
-  async getUser(): Promise<UserFullDTO> {
-    const { data } = await $api.get<UserFullDTO>('/profile');
 
     return data;
   }

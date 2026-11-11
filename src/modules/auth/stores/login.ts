@@ -4,6 +4,8 @@ import { toast } from '@heroui/react';
 
 import { authApi, type AuthErrorResponse } from '@/services/api/authApi';
 
+import { LOGIN_STATUS } from '@/modules/auth/constants';
+import type { LoginStatus } from '@/modules/auth/types';
 import { setUserToken } from '@/modules/auth/utils/token/token';
 
 import { extractErrorMessage } from '@/utils/http/http';
@@ -14,7 +16,7 @@ export interface LoginFormData {
   password: string;
 }
 
-export type LoginOutcome = 'success' | 'two-factor' | 'error';
+export type LoginResult = { status: LoginStatus };
 
 export type SetFieldError = (field: string, message: string) => void;
 
@@ -27,7 +29,7 @@ interface LoginState {
   submitForm: (
     data: LoginFormData,
     setFieldError: SetFieldError
-  ) => Promise<LoginOutcome>;
+  ) => Promise<LoginResult>;
   verifyTwoFactorCode: () => Promise<boolean>;
   startTwoFactor: (tempToken: string) => void;
   resetState: () => void;
@@ -62,16 +64,16 @@ export const useLoginStore = create<LoginState>((set, get) => ({
       if ('twoFactorRequired' in response && response.twoFactorRequired) {
         get().startTwoFactor(response.tempToken);
 
-        return 'two-factor';
+        return { status: LOGIN_STATUS.TWO_FACTOR_REQUIRED };
       }
 
       if ('accessToken' in response && response.accessToken) {
         setUserToken(response.accessToken);
 
-        return 'success';
+        return { status: LOGIN_STATUS.SUCCESS };
       }
 
-      return 'error';
+      return { status: LOGIN_STATUS.ERROR };
     } catch (e: unknown) {
       if (axios.isAxiosError<AuthErrorResponse>(e)) {
         const field = e.response?.data?.errors?.[0]?.field || 'username';
@@ -79,7 +81,7 @@ export const useLoginStore = create<LoginState>((set, get) => ({
         setFieldError(field, extractErrorMessage(e));
       }
 
-      return 'error';
+      return { status: LOGIN_STATUS.ERROR };
     } finally {
       set({ isLoading: false });
       hidePageLoader();

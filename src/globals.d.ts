@@ -1,7 +1,7 @@
 import type {
   GoogleButtonConfiguration,
   GoogleCredentialResponse,
-} from '@/modules/auth/types/google';
+} from '@/modules/auth/types';
 
 declare global {
   interface Window {

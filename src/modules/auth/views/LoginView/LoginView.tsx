@@ -17,6 +17,7 @@ import { useTranslations } from '@/shared/hooks/useTranslations';
 import { AuthPageLayout } from '@/modules/auth/components/AuthPageLayout/AuthPageLayout';
 import { AuthProgressStrip } from '@/modules/auth/components/AuthProgressStrip/AuthProgressStrip';
 import { GoogleSignInButton } from '@/modules/auth/components/GoogleSignInButton/GoogleSignInButton';
+import { LOGIN_STATUS } from '@/modules/auth/constants';
 import { type LoginFormData, useLoginStore } from '@/modules/auth/stores/login';
 import { setUserToken } from '@/modules/auth/utils/token/token';
 
@@ -59,11 +60,11 @@ export function LoginView() {
   useEffect(() => resetState, [resetState]);
 
   const onSubmit = handleSubmit(async (data) => {
-    const outcome = await submitForm(data, (field, message) =>
+    const result = await submitForm(data, (field, message) =>
       setError(field as keyof LoginFormData, { type: 'server', message })
     );
 
-    if (outcome === 'success') {
+    if (result.status === LOGIN_STATUS.SUCCESS) {
       router.push(APP_ROUTES.HOME);
     }
   });

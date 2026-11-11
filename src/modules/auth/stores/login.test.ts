@@ -2,7 +2,10 @@ import { AxiosError, type AxiosResponse } from 'axios';
 
 import { authApi } from '@/services/api/authApi';
 
-import { ACCESS_TOKEN_STORAGE_KEY } from '@/modules/auth/constants';
+import {
+  ACCESS_TOKEN_STORAGE_KEY,
+  LOGIN_STATUS,
+} from '@/modules/auth/constants';
 
 import { useLoginStore } from './login';
 
@@ -44,7 +47,7 @@ describe('useLoginStore', () => {
         .getState()
         .submitForm(credentials, vi.fn());
 
-      expect(outcome).toBe('success');
+      expect(outcome).toEqual({ status: LOGIN_STATUS.SUCCESS });
       expect(localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY)).toBe('access-1');
       expect(useLoginStore.getState().isLoading).toBe(false);
     });
@@ -59,7 +62,7 @@ describe('useLoginStore', () => {
         .getState()
         .submitForm(credentials, vi.fn());
 
-      expect(outcome).toBe('two-factor');
+      expect(outcome).toEqual({ status: LOGIN_STATUS.TWO_FACTOR_REQUIRED });
       expect(useLoginStore.getState().isTwoFactorRequired).toBe(true);
       expect(localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY)).toBe('temp-1');
     });
@@ -77,7 +80,7 @@ describe('useLoginStore', () => {
         .getState()
         .submitForm(credentials, setFieldError);
 
-      expect(outcome).toBe('error');
+      expect(outcome).toEqual({ status: LOGIN_STATUS.ERROR });
       expect(setFieldError).toHaveBeenCalledWith('password', 'Wrong password');
     });
 

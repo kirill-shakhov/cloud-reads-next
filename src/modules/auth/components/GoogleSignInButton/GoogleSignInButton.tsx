@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
 
 import { GOOGLE_CONFIG } from '@/modules/auth/constants';
-import type { GoogleCredentialResponse } from '@/modules/auth/types/google';
+import type { GoogleCredentialResponse } from '@/modules/auth/types';
 
 import i18n from '@/i18n';
 

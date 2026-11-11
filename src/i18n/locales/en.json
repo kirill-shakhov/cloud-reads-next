@@ -89,6 +89,67 @@
     "selectFileToUpload": "Select file to upload",
     "unsupportedFileType": "Unsupported file type"
   },
+  "home": {
+    "title": "Your books",
+    "viewLibrary": "View library",
+    "loadingBooks": "Loading books"
+  },
+  "header": {
+    "ariaLabelGlobal": "Global",
+    "openMainMenu": "Open main menu",
+    "yourCompany": "CloudReads home",
+    "main": "Main",
+    "myBooks": "My books",
+    "closeMenu": "Close menu",
+    "books": "Books",
+    "upload": "Upload",
+    "profileMenu": "Open profile menu",
+    "signOut": "Sign out",
+    "signIn": "Sign in"
+  },
+  "auth": {
+    "checkingSession": "Checking your session"
+  },
+  "booksLayout": {
+    "navigation": "Books navigation",
+    "library": "Library",
+    "upload": "Upload a book"
+  },
+  "dashboardSection": {
+    "noData": "No books found yet"
+  },
+  "bookUpload": {
+    "uploadNewBook": "Upload new book",
+    "uploadNewBookDescription": "Fill in the details below to add a new book to the library.",
+    "sectionDetails": "Book details",
+    "sectionFiles": "Files",
+    "title": "Title",
+    "genre": "Genre",
+    "author": "Author",
+    "photo": "Cover image",
+    "book": "Book file",
+    "save": "Save"
+  },
+  "bookDetails": {
+    "loading": "Loading book details",
+    "notFound": "This book could not be found.",
+    "new": "Book",
+    "genre": "Genre",
+    "author": "Author",
+    "download": "Download",
+    "downloadUnavailable": "The book file is not available for download.",
+    "delete": "Delete",
+    "read": "Read",
+    "deleteBookTitle": "Delete book",
+    "deleteBookConfirm": "Are you sure you want to delete this book?",
+    "deleteButton": "Delete",
+    "cancelButton": "Cancel"
+  },
+  "validation": {
+    "titleRequired": "Title is required",
+    "genreNameRequired": "Genre is required",
+    "authorNameRequired": "Author is required"
+  },
   "uiCountrySelector": {
     "label": "Country",
     "noResults": "No results found"

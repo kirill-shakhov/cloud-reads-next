@@ -47,8 +47,12 @@ export function AppHeader({ user }: AppHeaderProps) {
     setIsProfileMenuOpen((isOpen) => !isOpen);
   };
 
-  const handleLogout = async (): Promise<void> => {
+  const closeProfileMenu = (): void => {
     setIsProfileMenuOpen(false);
+  };
+
+  const handleLogout = async (): Promise<void> => {
+    closeProfileMenu();
     await logout();
   };
 
@@ -188,7 +192,7 @@ export function AppHeader({ user }: AppHeaderProps) {
               <Link
                 href={APP_ROUTES.AUTH_LOGIN}
                 className="text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400"
-                onClick={() => setIsProfileMenuOpen(false)}
+                onClick={closeProfileMenu}
               >
                 {t('signIn')}
               </Link>

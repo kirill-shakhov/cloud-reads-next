@@ -106,6 +106,7 @@ export function LoginView() {
     }
   };
 
+
   return (
     <AuthPageLayout title={t('title')}>
       <AuthProgressStrip

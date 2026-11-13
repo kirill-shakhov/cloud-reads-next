@@ -17,7 +17,6 @@ export default function Home() {
         <main className="mx-auto w-full max-w-7xl flex-1 px-6 py-10 lg:px-8">
           <BooksCollection mode="shelf" showLibraryLink />
         </main>
-        
       </div>
     </ProtectedRoute>
   );
